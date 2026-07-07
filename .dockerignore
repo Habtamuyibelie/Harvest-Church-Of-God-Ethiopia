@@ -1,0 +1,21 @@
+node_modules
+.next
+.git
+.gitignore
+
+# env files — never bake real secrets into an image layer
+.env
+.env*.local
+.env.local.example
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+README.md
+*.md
+
+.vercel
+Dockerfile
+.dockerignore
+docker-compose.yml

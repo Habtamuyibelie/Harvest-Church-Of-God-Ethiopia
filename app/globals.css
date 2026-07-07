@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+
+/* ────────────────────────────────────────────────────────────
+   Theme tokens — logo palette (deep indigo, gold, red, blue).
+   Default (no class / .dark) = dark mode. Adding "light" to
+   <html> switches every themed color across the whole site.
+   ──────────────────────────────────────────────────────────── */
+:root {
+  --c-ink: 7 9 15;
+  --c-inkLight: 15 18 25;
+  --c-surface: 20 23 32;
+  --c-surfaceUp: 28 32 48;
+  --c-rim: 42 47 63;
+  --c-hairline: 255 255 255;
+  --c-parchment: 240 238 232;
+  --c-parchmentDim: 184 178 168;
+  --c-gold: 224 168 46;
+  --c-goldDim: 158 116 32;
+
+  --bg-image-opacity: 0.34;
+  --overlay-a: rgba(6, 73, 15, 0.72);
+  --overlay-b: rgba(11, 30, 87, 0.5);
+  --overlay-c: rgba(53, 56, 144, 0.08);
+  --overlay-gold: rgba(224, 168, 46, 0.07);
+}
+
+html.light {
+  --c-ink: 250 248 244;
+  --c-inkLight: 255 255 255;
+  --c-surface: 255 255 255;
+  --c-surfaceUp: 244 240 232;
+  --c-rim: 214 208 196;
+  --c-hairline: 20 20 30;
+  --c-parchment: 26 27 38;
+  --c-parchmentDim: 96 96 108;
+  --c-gold: 168 116 16;
+  --c-goldDim: 133 92 15;
+
+  --bg-image-opacity: 0.14;
+  --overlay-a: rgba(223, 204, 166, 0.95);
+  --overlay-b: rgba(250, 248, 244, 0.84);
+  --overlay-c: rgba(53, 56, 144, 0.05);
+  --overlay-gold: rgba(168, 116, 16, 0.05);
+}
+
+/* Convenience aliases — a few hand-written pages reference these directly
+   instead of the --c-* tokens. Defined once; they resolve against whichever
+   theme (:root / html.light) is active on the element that uses them. */
+:root {
+  --bg: rgb(var(--c-ink));
+  --bg-card: rgb(var(--c-surfaceUp));
+  --nav-bg: rgb(var(--c-inkLight) / 0.92);
+  --text: rgb(var(--c-parchment));
+  --text-muted: rgb(var(--c-parchmentDim));
+  --border: rgb(var(--c-rim));
+}
+
+body {
+  background-color: rgb(var(--c-ink));
+  color: rgb(var(--c-parchment));
+  transition: background-color 0.20s ease, color 0.20s ease;
+}
+
+::selection { background-color: rgb(var(--c-gold)); color: rgb(var(--c-ink)); }
+
+:focus-visible { outline: 2px solid #C32A2E; outline-offset: 3px; }
+
+/* ── Shared site background (behind every page) ── */
+.bg-site-overlay {
+  background:
+    linear-gradient(180deg, var(--overlay-a) 0%, var(--overlay-b) 45%, var(--overlay-a) 100%);
+}
+.bg-site-vignette {
+  background:
+    radial-gradient(120% 90% at 50% 0%, var(--overlay-c) 0%, transparent 60%),
+    radial-gradient(100% 70% at 50% 100%, var(--overlay-gold) 0%, transparent 55%);
+}
+
+/* Faint diagonal weave texture, echoing habesha kemis telet borders —
+   a subtle nod to Ethiopian textile craft, not a loud pattern. */
+.bg-site-weave {
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgb(var(--c-gold) / 0.05) 0px,
+    rgb(var(--c-gold) / 0.05) 2px,
+    transparent 2px,
+    transparent 11px
+  );
+}
+
+/* Neutral single-tone veil used on page hero sections (replaces the old
+   per-page rainbow gradients) so every page shares one calm look. */
+.hero-veil {
+  background: linear-gradient(180deg, rgb(var(--c-ink) / 0.42) 0%, rgb(var(--c-ink) / 0.12) 55%, rgb(var(--c-ink) / 0.5) 100%);
+}
+
+/* ── Eyebrow label ── */
+.eyebrow {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgb(var(--c-gold));
+}
+
+/* ── Ken Burns animated hero ── */
+@keyframes kenburns {
+  0%   { transform: scale(1.08) translate(0, 0); }
+  33%  { transform: scale(1.13) translate(-1.5%, 1%); }
+  66%  { transform: scale(1.1)  translate(1.5%, -1%); }
+  100% { transform: scale(1.08) translate(0, 0); }
+}
+.hero-bg {
+  animation: kenburns 22s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+}
+
+/* ── Glass card ── */
+.glass {
+  background: rgb(var(--c-inkLight) / 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgb(var(--c-hairline) / 0.09);
+}
+
+/* ── Gradient text ── */
+.grad-text {
+  background: linear-gradient(135deg, #E0A82E 0%, #C32A2E 60%, #1B3F8B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Shine button ── */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.18) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0.55s ease;
+}
+.btn-shine:hover::after { transform: translateX(100%); }
+
+/* ── Markdown content (newsletter issues) ── */
+.prose-newsletter {
+  color: rgb(var(--c-parchmentDim));
+  line-height: 1.75;
+}
+.prose-newsletter > * + * { margin-top: 0.9em; }
+.prose-newsletter h1, .prose-newsletter h2, .prose-newsletter h3 {
+  font-family: var(--font-fraunces), serif;
+  color: rgb(var(--c-parchment));
+  font-weight: 600;
+  line-height: 1.3;
+}
+.prose-newsletter h1 { font-size: 1.5rem; }
+.prose-newsletter h2 { font-size: 1.25rem; }
+.prose-newsletter h3 { font-size: 1.1rem; }
+.prose-newsletter strong { color: rgb(var(--c-parchment)); font-weight: 700; }
+.prose-newsletter a { color: rgb(var(--c-gold)); text-decoration: underline; text-underline-offset: 2px; }
+.prose-newsletter ul, .prose-newsletter ol { padding-left: 1.4em; }
+.prose-newsletter li + li { margin-top: 0.35em; }
+.prose-newsletter li { list-style-position: outside; }
+.prose-newsletter ul li { list-style-type: disc; }
+.prose-newsletter ol li { list-style-type: decimal; }
+.prose-newsletter blockquote {
+  border-left: 3px solid rgb(var(--c-gold));
+  padding-left: 1em;
+  font-style: italic;
+  color: rgb(var(--c-parchmentDim));
+}
+.prose-newsletter code {
+  background: rgb(var(--c-surfaceUp));
+  border-radius: 4px;
+  padding: 0.1em 0.4em;
+  font-size: 0.9em;
+}
+.prose-newsletter hr { border-color: rgb(var(--c-rim)); }
+.prose-newsletter table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
+.prose-newsletter th, .prose-newsletter td { border: 1px solid rgb(var(--c-rim)); padding: 0.5em 0.75em; text-align: left; }
+
+/* ── Toast notifications ── */
+@keyframes toast-in {
+  from { transform: translateX(24px); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+.toast-in { animation: toast-in 0.25s ease-out; }
+@keyframes toast-shrink {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+.toast-progress { animation: toast-shrink linear forwards; }
+
+.divider-grad {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #E0A82E 30%, #C32A2E 55%, #1B3F8B 80%, transparent);
+  border: none;
+}
