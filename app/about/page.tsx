@@ -46,8 +46,13 @@ export default function About() {
 
       <section className="mx-auto max-w-3xl px-6 py-16">
         <p className="text-parchment/65 leading-relaxed text-lg">
-          Harvest Church of God Ethiopia began with a small gathering of believers in Addis Ababa committed to prayer, the study of Scripture, and serving one another. Over the years, that gathering has grown into a multi-generational church family devoted to worship, discipleship, and outreach across the region.
-        </p>
+        Harvest Church of God Ethiopia is registered under the Government of Ethiopia to provide integrated ministry on a national basis. Besides the spiritual ministry throughout the country, the Church has been developing a number of different works and has the vision to accomplish more. One of the areas where the church is focusing it’s resources at the moment is Arsi Zone for planting churches and development.
+
+Harvest Church of God Ethiopia is one of the evangelical churches in Ethiopia. The Church, established in 1991, now has over 30,000 members and 120+ local churches in Addis Ababa and other parts of the country. In view of its holistic commitment, the church is involved in social activities both in the rural and urban areas of the country.
+
+Considering the need of children’s education throughout the country, the Church has a plan to establish kindergarten and cycle one schools under every local church. Up to now, there are 40 kindergartens and 2 cycle one schools, with over 5,000 students in Addis Ababa, Sidama, Arsi and other areas.
+
+The Church also runs two Bible Schools for the purpose of training pastors and youth workers. The church’s major focus and strength is the children and the youth ministry. </p>
       </section>
 
       {/* Mission / Vision */}
