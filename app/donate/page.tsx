@@ -13,7 +13,7 @@ const accounts = [
     title: "TeleBirr",
     bank: "TeleBirr Mobile Money",
     accountName: "Harvest Church of God — Ethiopia",
-    accountNumber: "+251 91 234 5678",
+    accountNumber: "+251 9XXXXXXXX",
   },
 ];
 
